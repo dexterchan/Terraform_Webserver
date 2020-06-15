@@ -1,5 +1,3 @@
-
-
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "2.21.0"
@@ -12,6 +10,8 @@ module "vpc" {
   public_subnets  = var.vpc_public_subnets
   enable_nat_gateway = var.vpc_enable_nat_gateway
   tags = var.vpc_tags
+  enable_dns_hostnames = true
+  enable_dns_support = true
 }
 
 resource "aws_security_group" "web-dmz" {
