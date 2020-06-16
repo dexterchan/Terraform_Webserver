@@ -16,3 +16,8 @@ vpc_tags={
     Terraform   = "true"
     Environment = "dev"
   }
+
+#VM configuration
+bastionhost_ami="ami-0b4b17f1a97548fbf"
+webapp_ami="ami-0e19709cda59a1e5b"
+webapp_numInstances = 2

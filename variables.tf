@@ -33,3 +33,14 @@ variable "vpc_tags" {
   description = "Tags to apply to resources created by VPC module"
 }
 
+variable "bastionhost_ami" {
+  description = "bastionhost ami"
+}
+
+variable "webapp_ami" {
+  description = "webapp ami"
+}
+
+variable "webapp_numInstances" {
+  description = "number of webapp"
+}

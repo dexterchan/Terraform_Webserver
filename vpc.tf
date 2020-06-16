@@ -71,6 +71,10 @@ resource "aws_security_group" "bastion_ssh" {
 }
 
 
+
+
+
+
 data "aws_subnet" "private_subnet_cidr" {
   for_each =  toset(module.vpc.private_subnets)
   id       = each.value
@@ -109,5 +113,31 @@ resource "aws_security_group" "web-app" {
 
   tags = {
     Name = "web-app"
+  }
+}
+
+
+resource "aws_security_group" "bastion_ssh_private" {
+  name        = "bastion_ssh_private"
+  description = "Allow ssh inbound internal traffic"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress {
+    description = "SSH from VPC"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = [for s in data.aws_subnet.public_subnet_cidr : s.cidr_block]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [for s in data.aws_subnet.public_subnet_cidr : s.cidr_block]
+  }
+
+  tags = {
+    Name = "allow_private_ssh"
   }
 }
