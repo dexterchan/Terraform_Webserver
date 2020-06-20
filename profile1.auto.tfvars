@@ -19,5 +19,5 @@ vpc_tags={
 
 #VM configuration
 bastionhost_ami="ami-0b4b17f1a97548fbf"
-webapp_ami="ami-0e19709cda59a1e5b"
-webapp_numInstances = 2
+webapp_ami="ami-031d881cb7df9171c"
+webapp_numInstances = 3
