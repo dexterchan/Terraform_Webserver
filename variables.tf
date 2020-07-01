@@ -1,8 +1,8 @@
 variable "region" {
-    default = "us-west-2"
+  default = "us-west-2"
 }
-variable "key_name"{
-    default = "aws_humble_pig"
+variable "key_name" {
+  default = "aws_humble_pig"
 }
 variable "testPubKey" {}
 
@@ -19,6 +19,9 @@ variable "vpc_cidr" {
 variable "vpc_private_subnets" {
   description = "Private subnets for VPC"
 }
+variable "vpc_private_subnets_3" {
+  description = "Private subnets for VPC 3 subnet per AZ"
+}
 
 variable "vpc_public_subnets" {
   description = "Public subnets for VPC"
@@ -26,7 +29,7 @@ variable "vpc_public_subnets" {
 
 variable "vpc_enable_nat_gateway" {
   description = "Enable NAT gateway for VPC"
-  default = false
+  default     = false
 }
 
 variable "vpc_tags" {

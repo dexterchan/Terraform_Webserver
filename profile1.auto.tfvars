@@ -7,9 +7,11 @@ vpc_name="uswest2simplewebvpc"
 vpc_azs=["us-west-2a", "us-west-2b", "us-west-2c"]
 vpc_cidr="192.168.0.0/16"
 vpc_public_subnets=["192.168.1.0/24","192.168.2.0/24","192.168.3.0/24"]
-vpc_private_subnets=["192.168.101.0/24", "192.168.102.0/24","192.168.103.0/24",
+vpc_private_subnets_3=["192.168.101.0/24", "192.168.102.0/24","192.168.103.0/24",
                     "192.168.104.0/24", "192.168.105.0/24","192.168.106.0/24",
                     "192.168.107.0/24", "192.168.108.0/24","192.168.109.0/24"
+                    ]
+vpc_private_subnets=["192.168.101.0/24", "192.168.102.0/24","192.168.103.0/24"
                     ]
 vpc_enable_nat_gateway=false
 vpc_tags={
@@ -20,4 +22,4 @@ vpc_tags={
 #VM configuration
 bastionhost_ami="ami-0b4b17f1a97548fbf"
 webapp_ami="ami-031d881cb7df9171c"
-webapp_numInstances = 3
+webapp_numInstances = 1

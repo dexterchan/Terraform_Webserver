@@ -6,9 +6,9 @@ module "alb" {
 
   load_balancer_type = "application"
 
-  vpc_id             = module.vpc.vpc_id
-  subnets            = module.vpc.public_subnets
-  security_groups    = [aws_security_group.web-dmz.id]
+  vpc_id          = module.vpc.vpc_id
+  subnets         = module.vpc.public_subnets
+  security_groups = [aws_security_group.web-dmz.id]
 
   create_lb = true
   #access_logs = {
@@ -16,7 +16,7 @@ module "alb" {
   #}
 
   enable_http2 = true
-  
+
   target_groups = [
     {
       name_prefix      = "webapp"
@@ -24,18 +24,18 @@ module "alb" {
       backend_port     = 80
       target_type      = "instance"
       health_check = {
-        enabled = true
+        enabled  = true
         interval = 5
-        path = "/"
-        port = "traffic-port"
-        timeout = 4
+        path     = "/"
+        port     = "traffic-port"
+        timeout  = 4
         protocol = "HTTP"
-        matcher = "200-299"
+        matcher  = "200-299"
       }
       stickiness = {
-        type = "lb_cookie"
+        type            = "lb_cookie"
         cookie_duration = 120
-        enabled = true
+        enabled         = true
       }
     }
   ]

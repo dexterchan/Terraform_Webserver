@@ -1,5 +1,5 @@
 module "privatewebgrp_asg" {
-  source  = "terraform-aws-modules/autoscaling/aws"
+  source = "terraform-aws-modules/autoscaling/aws"
 
   name = "privateweb-grp"
 
@@ -7,13 +7,13 @@ module "privatewebgrp_asg" {
   #
   # launch_configuration = "my-existing-launch-configuration" # Use the existing launch configuration
   create_lc = true
-  lc_name = "privateweb-lc"
+  lc_name   = "privateweb-lc"
 
-  image_id        = var.webapp_ami
-  instance_type   = "t2.micro"
-  security_groups = [ aws_security_group.web-app.id,
-                             aws_security_group.bastion_ssh_private.id ]
-  
+  image_id      = var.webapp_ami
+  instance_type = "t2.micro"
+  security_groups = [aws_security_group.web-app.id,
+  aws_security_group.bastion_ssh_private.id]
+
   root_block_device = [
     {
       volume_size = "8"
@@ -31,7 +31,7 @@ module "privatewebgrp_asg" {
   wait_for_capacity_timeout = 0
 
   target_group_arns = module.alb.target_group_arns
-  #target_group_arns = [aws_lb_target_group.stickyGroup.arn]
+  # target_group_arns = [aws_lb_target_group.stickyGroup.arn] not yet able to associate aws_lb_target_group into module alb
   tags = [
     {
       key                 = "Environment"
