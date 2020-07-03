@@ -47,3 +47,7 @@ variable "webapp_ami" {
 variable "webapp_numInstances" {
   description = "number of webapp"
 }
+
+variable "ASG_role_arn" {
+  description = "Auto Scaling Group ARN"
+}

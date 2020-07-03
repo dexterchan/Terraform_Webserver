@@ -13,6 +13,7 @@ module "privatewebgrp_asg" {
   instance_type = "t2.micro"
   security_groups = [aws_security_group.web-app.id,
   aws_security_group.bastion_ssh_private.id]
+  #service_linked_role_arn = var.ASG_role_arn
 
   root_block_device = [
     {
