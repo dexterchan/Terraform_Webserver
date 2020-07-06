@@ -1,14 +1,3 @@
-
-
-
-module "webapp-launch_config" {
-  source     = "./modules/launch-config"
-  webapp_ami = var.webapp_ami
-  vpc_sg_ids = [aws_security_group.web-app.id,
-  aws_security_group.bastion_ssh_private.id]
-  iamrole = var.webapp_IAM_ROLE
-}
-
 module "privatewebgrp_asg" {
   source = "terraform-aws-modules/autoscaling/aws"
 
@@ -16,8 +5,22 @@ module "privatewebgrp_asg" {
 
   # Launch configuration
   #
-  launch_configuration = module.webapp-launch_config.asgname
-  create_lc            = false
+  # launch_configuration = "my-existing-launch-configuration" # Use the existing launch configuration
+  create_lc = true
+  lc_name   = "privateweb-lc"
+
+  image_id      = var.webapp_ami
+  instance_type = "t2.micro"
+  security_groups = [aws_security_group.web-app.id,
+  aws_security_group.bastion_ssh_private.id]
+  #service_linked_role_arn = var.ASG_role_arn
+
+  root_block_device = [
+    {
+      volume_size = "8"
+      volume_type = "gp2"
+    },
+  ]
 
   # Auto scaling group
   asg_name                  = "privateweb-asg"

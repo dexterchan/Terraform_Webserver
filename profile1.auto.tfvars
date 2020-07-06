@@ -21,6 +21,7 @@ vpc_tags={
 
 #VM configuration
 bastionhost_ami="ami-0b4b17f1a97548fbf"
-webapp_ami="ami-031d881cb7df9171c"
+webapp_ami="ami-0166ad3088f657739"
 webapp_numInstances = 1
 ASG_role_arn="arn:aws:iam::192592784707:role/docker-logs"
+webapp_IAM_ROLE="docker-logs"
