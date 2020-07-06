@@ -175,3 +175,16 @@ resource "aws_security_group" "vpc-private-conn" {
     Name = "vpc-private-conn"
   }
 }
+
+
+resource "aws_vpc_endpoint" "cloudwatch_vpc_endpoint" {
+  vpc_id            = module.vpc.vpc_id
+  service_name      = "com.amazonaws.us-west-2.logs"
+  vpc_endpoint_type = "Interface"
+
+  security_group_ids = [
+    aws_security_group.vpc-private-conn.id,
+  ]
+  subnet_ids          = module.vpc.private_subnets
+  private_dns_enabled = true
+}
