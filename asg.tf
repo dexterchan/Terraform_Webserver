@@ -6,7 +6,12 @@ module "webapp-launch_config" {
   webapp_ami = var.webapp_ami
   vpc_sg_ids = [aws_security_group.web-app.id,
   aws_security_group.bastion_ssh_private.id]
-  iamrole = var.webapp_IAM_ROLE
+  iamrole              = var.webapp_IAM_ROLE
+  vpc_id               = module.vpc.vpc_id
+  subnets_vpc_endpoint = module.vpc.private_subnets
+  vpc_sg_private_ids = [
+    aws_security_group.vpc-private-conn.id,
+  ]
 }
 
 module "privatewebgrp_asg" {
@@ -37,4 +42,5 @@ module "privatewebgrp_asg" {
       propagate_at_launch = true
     }
   ]
+
 }
