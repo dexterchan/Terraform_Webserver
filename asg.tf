@@ -4,8 +4,10 @@
 module "webapp-launch_config" {
   source     = "./modules/launch-config"
   webapp_ami = var.webapp_ami
-  vpc_sg_ids = [aws_security_group.web-app.id,
-  aws_security_group.bastion_ssh_private.id]
+  vpc_sg_ids = [
+    aws_security_group.web-app.id,
+    aws_security_group.bastion_ssh_private.id
+  ]
   iamrole              = var.webapp_IAM_ROLE
   vpc_id               = module.vpc.vpc_id
   subnets_vpc_endpoint = module.vpc.private_subnets
