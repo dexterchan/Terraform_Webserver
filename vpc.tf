@@ -5,13 +5,13 @@ module "vpc" {
   name = var.vpc_name
   cidr = var.vpc_cidr
 
-  azs             = var.vpc_azs
-  private_subnets = var.vpc_private_subnets
-  public_subnets  = var.vpc_public_subnets
-  enable_nat_gateway = var.vpc_enable_nat_gateway
-  tags = var.vpc_tags
+  azs                  = var.vpc_azs
+  private_subnets      = var.vpc_private_subnets
+  public_subnets       = var.vpc_public_subnets
+  enable_nat_gateway   = var.vpc_enable_nat_gateway
+  tags                 = var.vpc_tags
   enable_dns_hostnames = true
-  enable_dns_support = true
+  enable_dns_support   = true
 }
 
 resource "aws_security_group" "web-dmz" {
@@ -76,12 +76,12 @@ resource "aws_security_group" "bastion_ssh" {
 
 
 data "aws_subnet" "private_subnet_cidr" {
-  for_each =  toset(module.vpc.private_subnets)
+  for_each = toset(module.vpc.private_subnets)
   id       = each.value
 }
 
 data "aws_subnet" "public_subnet_cidr" {
-  for_each =  toset(module.vpc.public_subnets)
+  for_each = toset(module.vpc.public_subnets)
   id       = each.value
 }
 
@@ -141,3 +141,40 @@ resource "aws_security_group" "bastion_ssh_private" {
     Name = "allow_private_ssh"
   }
 }
+
+
+
+
+resource "aws_security_group" "vpc-private-conn" {
+  name        = "vpc-private-conn"
+  description = "Allow intra HTTP/HTTPS traffic"
+  vpc_id      = module.vpc.vpc_id
+
+  ingress {
+    description = "comm within VPC"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = [for s in data.aws_subnet.private_subnet_cidr : s.cidr_block]
+  }
+  ingress {
+    description = "comm within VPC"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = [for s in data.aws_subnet.private_subnet_cidr : s.cidr_block]
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "vpc-private-conn"
+  }
+}
+
+
+
