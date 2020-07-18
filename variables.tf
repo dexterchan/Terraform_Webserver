@@ -55,3 +55,7 @@ variable "ASG_role_arn" {
 variable "webapp_IAM_ROLE" {
   description = "web app running with iam role"
 }
+
+variable "ssl_certificate_arn" {
+  description = "arn of SSL certificate"
+}

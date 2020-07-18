@@ -21,7 +21,7 @@ module "alb" {
     {
       name_prefix      = "webapp"
       backend_protocol = "HTTP"
-      backend_port     = 80
+      backend_port     = 443
       target_type      = "instance"
       health_check = {
         enabled  = true
@@ -44,6 +44,15 @@ module "alb" {
     {
       port               = 80
       protocol           = "HTTP"
+      target_group_index = 0
+    }
+  ]
+
+  https_listeners = [
+    {
+      port               = 443
+      protocol           = "HTTPS"
+      certificate_arn    = var.ssl_certificate_arn
       target_group_index = 0
     }
   ]

@@ -20,8 +20,11 @@ vpc_tags={
   }
 
 #VM configuration
-bastionhost_ami="ami-0b4b17f1a97548fbf"
-webapp_ami="ami-0166ad3088f657739"
+bastionhost_ami="ami-059f3f0d168e660cc"
+webapp_ami="ami-01b08717623259f3a"
 webapp_numInstances = 1
 ASG_role_arn="arn:aws:iam::192592784707:role/docker-logs"
 webapp_IAM_ROLE="docker-logs"
+
+# Load balancer configuration
+ssl_certificate_arn="arn:aws:acm:us-west-2:192592784707:certificate/ac9455d3-6b02-4455-8bcd-d41566b4972a"
