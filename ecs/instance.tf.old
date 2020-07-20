@@ -1,0 +1,32 @@
+
+module "webapp_grp0" {
+    source = "./modules/private-web-group"
+    webapp_ami = var.webapp_ami
+    webapp_numInstances = var.webapp_numInstances
+    vpc_sg_ids = [ aws_security_group.web-app.id,
+                             aws_security_group.bastion_ssh_private.id ]
+    subnet_id = module.vpc.private_subnets[0]
+
+    tags = {
+      Terraform   = "true"
+      Environment = "dev"
+      Name = "webapp-grp0"
+    }
+}
+
+
+module "webapp_grp1" {
+    source = "./modules/private-web-group"
+    webapp_ami = var.webapp_ami
+    webapp_numInstances = var.webapp_numInstances
+    vpc_sg_ids = [ aws_security_group.web-app.id,
+                             aws_security_group.bastion_ssh_private.id ]
+    subnet_id = module.vpc.private_subnets[1]
+
+    tags = {
+      Terraform   = "true"
+      Environment = "dev"
+      Name = "webapp-grp1"
+    }
+}
+
