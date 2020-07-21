@@ -3,7 +3,7 @@ terraform {
     organization = "dextest"
 
     workspaces {
-      name = "simpleWebServerSetup"
+      name = "aws_ecs_marketdataserver"
     }
   }
 }
