@@ -27,7 +27,8 @@ resource "aws_iam_role_policy_attachment" "ecs_terraform_ec2_cloudwatch_role" {
 resource "aws_iam_instance_profile" "ecs_terraform_profile" {
     name = "ecs_terraform_profile"
     path = "/"
-    roles = [aws_iam_role.ecs_terraform_instance_role.name]
+    #roles = [aws_iam_role.ecs_terraform_instance_role.name]
+    role = aws_iam_role.ecs_terraform_instance_role.name
 }
 
 resource "aws_iam_role" "ecs_terraform_service_role" {

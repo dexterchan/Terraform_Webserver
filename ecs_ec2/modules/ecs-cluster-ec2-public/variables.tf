@@ -3,17 +3,17 @@ variable "ecs_cluster_name" {
   type        = string
 }
 
-variable "webapp_ami" {
-  description = "webapp ami"
-}
-
 variable "instance_type"{
   description = "instance type"
   default = "t2.micro"
 }
 
-variable "vpc_sg_ids" {
-  description = "security group id"
+variable "launch_config_security_group" {
+  description = "launch config security group id list"
+}
+
+variable "ALB_security_group" {
+  description = "ALB security group id list"
 }
 
 variable "vpc_id" {
@@ -27,4 +27,28 @@ variable "key_name" {
 variable "associate_public_ip_address"{
   description = "associate public ip address"
   default = true
+}
+
+variable "alb_subnets" {
+  description = "alb subnets"
+}
+
+variable "asg_subnets" {
+  description = "asg subnets"
+}
+
+variable "min_size"{
+  description = "min size"
+}
+
+variable "max_size"{
+  description = "min size"
+}
+
+variable "desired_capacity"{
+  description = "desired capacity"
+}
+
+variable "ssl_certificate_arn"{
+  description = "arn of ssl certificate"
 }

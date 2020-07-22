@@ -107,12 +107,24 @@ EOF
 module "ecs-public-cluster"{
   source  = "./modules/ecs-cluster-ec2-public"  
   ecs_cluster_name = local.ec2_resources_name
-  webapp_ami = var.webapp_ami
-  vpc_sg_ids = [
+  
+  launch_config_security_group = [
     aws_security_group.web-dmz.id,
     aws_security_group.bastion_ssh.id
   ]
   vpc_id = module.vpc.vpc_id
 
   key_name = aws_key_pair.deployer.key_name
+
+  asg_subnets = module.vpc.public_subnets
+  alb_subnets = module.vpc.public_subnets
+
+  min_size = 1
+  max_size = 1
+  desired_capacity = 1
+  ALB_security_group = [
+    aws_security_group.web-dmz.id
+  ]
+
+  ssl_certificate_arn = var.ssl_certificate_arn
 }
