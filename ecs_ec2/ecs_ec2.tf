@@ -5,7 +5,7 @@ locals {
   # This is the convention we use to know what belongs to each other
   ec2_resources_name = "${local.name}-${local.environment}"
 }
-
+/*
 module "ecs" {
   source = "terraform-aws-modules/ecs/aws"
   name   = local.name
@@ -100,4 +100,10 @@ echo "Done"
 EOF
 
 
+}
+*/
+
+
+module "ecs-ec2"{
+  source  = "./modules/ecs-ec2"  
 }
