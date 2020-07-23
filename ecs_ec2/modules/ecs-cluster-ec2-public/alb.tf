@@ -19,6 +19,7 @@ module "alb" {
       name_prefix      = "webapp"
       backend_protocol = "HTTP"
       target_type      = "instance"
+      backend_port = 80
       health_check = {
         enabled  = true
         interval = 5

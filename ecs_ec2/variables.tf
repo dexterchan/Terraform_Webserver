@@ -59,3 +59,18 @@ variable "webapp_IAM_ROLE" {
 variable "ssl_certificate_arn" {
   description = "arn of SSL certificate"
 }
+
+variable "min_size"{
+  description = "min size"
+  default = 1
+}
+
+variable "max_size"{
+  description = "min size"
+  default = 2
+}
+
+variable "desired_capacity"{
+  description = "desired capacity"
+  default = 1
+}

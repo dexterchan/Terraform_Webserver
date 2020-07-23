@@ -77,19 +77,13 @@ resource "aws_security_group" "web-app" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description     = "http from VPC"
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
+    description     = "all traffic from ALB"
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
     security_groups = [aws_security_group.web-dmz.id]
   }
-  ingress {
-    description     = "https from VPC"
-    from_port       = 443
-    to_port         = 443
-    protocol        = "tcp"
-    security_groups = [aws_security_group.web-dmz.id]
-  }
+  
   egress {
     from_port   = 0
     to_port     = 0
