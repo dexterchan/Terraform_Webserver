@@ -8,7 +8,7 @@ resource "aws_key_pair" "deployer" {
   public_key = var.testPubKey
 }
 
-/*
+
 resource "aws_instance" "bastion" {
   key_name      = aws_key_pair.deployer.key_name
   ami           = var.bastionhost_ami
@@ -21,5 +21,5 @@ resource "aws_instance" "bastion" {
     Environment = "dev"
     Name = "bastion"
   }
-}*/
+}
 
