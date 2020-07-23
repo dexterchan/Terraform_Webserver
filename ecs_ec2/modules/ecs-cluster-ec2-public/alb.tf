@@ -6,23 +6,20 @@ module "alb" {
 
   load_balancer_type = "application"
 
-  vpc_id          = module.vpc.vpc_id
-  subnets         = module.vpc.public_subnets
-  security_groups = [aws_security_group.web-dmz.id]
+  vpc_id          = var.vpc_id
+  subnets         = var.alb_subnets
+  security_groups = var.ALB_security_group
 
   create_lb = true
-  #access_logs = {
-  #  bucket = "humblepig2020mar-log"
-  #}
-
+  
   enable_http2 = true
 
   target_groups = [
     {
       name_prefix      = "webapp"
       backend_protocol = "HTTP"
-      backend_port     = 80
       target_type      = "instance"
+      backend_port = 80
       health_check = {
         enabled  = true
         interval = 5
@@ -44,6 +41,15 @@ module "alb" {
     {
       port               = 80
       protocol           = "HTTP"
+      target_group_index = 0
+    }
+  ]
+
+  https_listeners = [
+    {
+      port               = 443
+      protocol           = "HTTPS"
+      certificate_arn    = var.ssl_certificate_arn
       target_group_index = 0
     }
   ]

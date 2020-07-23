@@ -71,38 +71,24 @@ resource "aws_security_group" "bastion_ssh" {
 }
 
 
-
-
-
-
-data "aws_subnet" "private_subnet_cidr" {
-  for_each = toset(module.vpc.private_subnets)
-  id       = each.value
-}
-
-data "aws_subnet" "public_subnet_cidr" {
-  for_each = toset(module.vpc.public_subnets)
-  id       = each.value
-}
-
 resource "aws_security_group" "web-app" {
   name        = "web-app"
   description = "Allow HTTP/HTTPS inbound traffic"
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description = "SSH from VPC"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = [for s in data.aws_subnet.public_subnet_cidr : s.cidr_block]
+    description     = "http from VPC"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.web-dmz.id]
   }
   ingress {
-    description = "SSH from VPC"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = [for s in data.aws_subnet.public_subnet_cidr : s.cidr_block]
+    description     = "https from VPC"
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    security_groups = [aws_security_group.web-dmz.id]
   }
   egress {
     from_port   = 0
@@ -123,18 +109,18 @@ resource "aws_security_group" "bastion_ssh_private" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description = "SSH from VPC"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [for s in data.aws_subnet.public_subnet_cidr : s.cidr_block]
+    description     = "SSH from VPC"
+    from_port       = 22
+    to_port         = 22
+    protocol        = "tcp"
+    security_groups = [aws_security_group.bastion_ssh.id]
   }
 
   egress {
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
-    cidr_blocks = [for s in data.aws_subnet.public_subnet_cidr : s.cidr_block]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags = {
@@ -151,18 +137,12 @@ resource "aws_security_group" "vpc-private-conn" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description = "comm within VPC"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = [for s in data.aws_subnet.private_subnet_cidr : s.cidr_block]
-  }
-  ingress {
-    description = "comm within VPC"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = [for s in data.aws_subnet.private_subnet_cidr : s.cidr_block]
+    description     = "comm within VPC"
+    from_port       = 443
+    to_port         = 443
+    protocol        = "tcp"
+    security_groups = [aws_security_group.web-app.id]
+    self            = true
   }
   egress {
     from_port   = 0

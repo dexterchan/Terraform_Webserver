@@ -1,0 +1,21 @@
+[
+  {
+    "name": "marketsvc-http",
+    "image": "192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:latest",
+    "cpu": 10,
+    "memory": 200,
+    "links": [],
+    "portMappings": [
+      {
+        "containerPort": 3000,
+        "protocol": "tcp"
+      }
+    ],
+    "essential": true,
+    "entryPoint": [],
+    "command": [],
+    "environment": [],
+    "mountPoints": [],
+    "volumesFrom": []
+  }
+]
