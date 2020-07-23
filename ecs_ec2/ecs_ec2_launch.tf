@@ -129,8 +129,8 @@ module "ecs-public-cluster"{
   ssl_certificate_arn = var.ssl_certificate_arn
 }
 
-
-module "ecs-public-cluster"{
+/*
+module "ecs-private-cluster"{
   source  = "./modules/ecs-cluster-ec2-private"
   region = var.region
   
@@ -155,4 +155,4 @@ module "ecs-public-cluster"{
   ]
 
   ssl_certificate_arn = var.ssl_certificate_arn
-}
+}*/

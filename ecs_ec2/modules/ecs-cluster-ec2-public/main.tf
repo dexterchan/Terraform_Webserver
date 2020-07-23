@@ -1,18 +1,4 @@
-data "aws_ami" "amazon_linux_ecs" {
-  most_recent = true
 
-  owners = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["amzn-ami-*-amazon-ecs-optimized"]
-  }
-
-  filter {
-    name   = "owner-alias"
-    values = ["amazon"]
-  }
-}
 
 resource "aws_ecs_cluster" "main" {
     name = var.ecs_cluster_name
@@ -21,7 +7,7 @@ resource "aws_ecs_cluster" "main" {
     */
 }
 
-
+/*
 module "ecs-launch_config" {
   source     = "../launch-config"
   webapp_ami = data.aws_ami.amazon_linux_ecs.id
@@ -32,7 +18,7 @@ module "ecs-launch_config" {
   associate_public_ip_address = var.associate_public_ip_address
   ecs_cluster_name = var.ecs_cluster_name
 }
-
+*/
 
 module "ecs-asg" {
   source = "terraform-aws-modules/autoscaling/aws"
@@ -41,7 +27,7 @@ module "ecs-asg" {
 
   # Launch configuration
   #
-  launch_configuration = module.ecs-launch_config.asgname
+  launch_configuration = aws_launch_configuration.as_conf.name
   create_lc            = false
 
   # Auto scaling group
