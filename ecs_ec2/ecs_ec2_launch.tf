@@ -103,7 +103,7 @@ EOF
 }
 */
 
-
+/*
 module "ecs-public-cluster"{
   source  = "./modules/ecs-cluster-ec2-public"  
   ecs_cluster_name = local.ec2_resources_name
@@ -127,32 +127,39 @@ module "ecs-public-cluster"{
   ]
 
   ssl_certificate_arn = var.ssl_certificate_arn
-}
+}*/
 
-/*
+
 module "ecs-private-cluster"{
   source  = "./modules/ecs-cluster-ec2-private"
   region = var.region
   
   ecs_cluster_name = local.ec2_resources_name
   
-  launch_config_security_group = [
-    aws_security_group.web-app.id,
-    aws_security_group.bastion_ssh.id
-  ]
+  
   vpc_id = module.vpc.vpc_id
 
   key_name = aws_key_pair.deployer.key_name
 
-  asg_subnets = module.vpc.public_subnets
+  asg_subnets = module.vpc.private_subnets
   alb_subnets = module.vpc.public_subnets
+
+  asg_route_table_ids = module.vpc.private_route_table_ids
 
   min_size = var.min_size
   max_size = var.max_size
   desired_capacity = var.desired_capacity
+
   ALB_security_group = [
     aws_security_group.web-dmz.id
   ]
+  launch_config_security_group = [
+    aws_security_group.web-app.id,
+    aws_security_group.bastion_ssh.id
+  ]
+  vpc-endpoint_security_group = [
+    aws_security_group.vpc-endpoint-sg.id
+  ]
 
   ssl_certificate_arn = var.ssl_certificate_arn
-}*/
+}

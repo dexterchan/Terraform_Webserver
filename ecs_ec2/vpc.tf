@@ -126,8 +126,8 @@ resource "aws_security_group" "bastion_ssh_private" {
 
 
 
-resource "aws_security_group" "vpc-private-conn" {
-  name        = "vpc-private-conn"
+resource "aws_security_group" "vpc-endpoint-sg" {
+  name        = "vpc-endpoint-sg"
   description = "Allow intra HTTP/HTTPS traffic"
   vpc_id      = module.vpc.vpc_id
 
@@ -147,7 +147,7 @@ resource "aws_security_group" "vpc-private-conn" {
   }
 
   tags = {
-    Name = "vpc-private-conn"
+    Name = "vpc-endpoint-sg"
   }
 }
 
