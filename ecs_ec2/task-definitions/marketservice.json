@@ -16,6 +16,15 @@
     "command": [],
     "environment": [],
     "mountPoints": [],
-    "volumesFrom": []
+    "volumesFrom": [],
+    "logConfiguration": {
+      "logDriver": "awslogs",
+      "secretOptions": null,
+      "options": {
+        "awslogs-group": "/ecs/terraform-svc",
+        "awslogs-region": "us-west-2",
+        "awslogs-stream-prefix": "ecs"
+      }
+    }
   }
 ]
