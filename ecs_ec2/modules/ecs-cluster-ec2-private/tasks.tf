@@ -20,7 +20,7 @@ data "template_file" "container_task_config" {
 }
 
 resource "aws_ecs_task_definition" "marketsvc-http" {
-    family = "marketsvc-http"
+    family = "marketsvc-http-task"
     container_definitions = data.template_file.container_task_config.rendered
 
     depends_on = [
@@ -30,7 +30,7 @@ resource "aws_ecs_task_definition" "marketsvc-http" {
 
 
 resource "aws_ecs_service" "marketsvc-http" {
-    name = "marketsvc-http"
+    name = "marketsvc-http-svc"
     cluster = aws_ecs_cluster.main.id
     task_definition = aws_ecs_task_definition.marketsvc-http.arn
     iam_role = aws_iam_role.ecs_terraform_service_role.arn
