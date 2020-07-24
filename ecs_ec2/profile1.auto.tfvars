@@ -21,10 +21,13 @@ vpc_tags={
 
 #VM configuration
 bastionhost_ami="ami-063fb6d7db5d4692d"
-webapp_ami="ami-01b08717623259f3a"
-webapp_numInstances = 1
+ec2_ami="ami-01b08717623259f3a"
+ec2_numInstances = 1
 ASG_role_arn="arn:aws:iam::192592784707:role/docker-logs"
 webapp_IAM_ROLE="docker-logs"
 
 # Load balancer configuration
 ssl_certificate_arn="arn:aws:acm:us-west-2:192592784707:certificate/ac9455d3-6b02-4455-8bcd-d41566b4972a"
+
+# task docker image
+task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:latest"

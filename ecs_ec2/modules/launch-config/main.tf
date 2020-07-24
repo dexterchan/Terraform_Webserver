@@ -1,7 +1,7 @@
 
 
 resource "aws_launch_configuration" "as_conf" {
-  image_id        = var.webapp_ami
+  image_id        = var.ec2_ami
   instance_type   = var.instance_type
   security_groups = var.vpc_sg_ids
   name_prefix     = "ECS-${var.ecs_cluster_name}"

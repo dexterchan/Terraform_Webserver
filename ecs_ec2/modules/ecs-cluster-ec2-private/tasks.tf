@@ -1,9 +1,31 @@
 
+resource "aws_cloudwatch_log_group" "applog" {
+  name = "/ecs/terraform-svc/${var.ecs_cluster_name}"
+  retention_in_days = 30
+  tags = {
+    Environment = "dev"
+    Application = "${var.ecs_cluster_name}"
+  }
+}
 
+
+data "template_file" "container_task_config" {
+  template = file("task-definitions/webappsvc.json")
+
+  vars = {
+    region = var.region
+    task_docker_image = var.task_docker_image
+    log_grp = "/ecs/terraform-svc/${var.ecs_cluster_name}"
+  }
+}
 
 resource "aws_ecs_task_definition" "marketsvc-http" {
     family = "marketsvc-http"
     container_definitions = file("task-definitions/marketservice.json")
+
+    depends_on = [
+    aws_cloudwatch_log_group.applog,
+    ]
 }
 
 

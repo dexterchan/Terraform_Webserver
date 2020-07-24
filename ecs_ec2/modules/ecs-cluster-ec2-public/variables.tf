@@ -52,3 +52,7 @@ variable "desired_capacity"{
 variable "ssl_certificate_arn"{
   description = "arn of ssl certificate"
 }
+
+variable "task_docker_image"{
+  description = "task docker image"
+}

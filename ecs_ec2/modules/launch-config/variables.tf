@@ -1,5 +1,5 @@
-variable "webapp_ami" {
-  description = "webapp ami"
+variable "ec2_ami" {
+  description = "ec2 ami"
 }
 
 variable "instance_type"{

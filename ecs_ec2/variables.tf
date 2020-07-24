@@ -40,11 +40,11 @@ variable "bastionhost_ami" {
   description = "bastionhost ami"
 }
 
-variable "webapp_ami" {
-  description = "webapp ami"
+variable "ec2_ami" {
+  description = "ec2 ami"
 }
 
-variable "webapp_numInstances" {
+variable "ec2_numInstances" {
   description = "number of webapp"
 }
 
@@ -70,7 +70,7 @@ variable "max_size"{
   default = 2
 }
 
-variable "desired_capacity"{
-  description = "desired capacity"
-  default = 1
+
+variable "task_docker_image"{
+  description = "task docker image"
 }

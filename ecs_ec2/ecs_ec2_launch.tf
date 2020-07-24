@@ -121,12 +121,13 @@ module "ecs-public-cluster"{
 
   min_size = var.min_size
   max_size = var.max_size
-  desired_capacity = var.desired_capacity
+  desired_capacity = var.ec2_numInstances
   ALB_security_group = [
     aws_security_group.web-dmz.id
   ]
 
   ssl_certificate_arn = var.ssl_certificate_arn
+  task_docker_image = var.task_docker_image
 }*/
 
 
@@ -148,7 +149,7 @@ module "ecs-private-cluster"{
 
   min_size = var.min_size
   max_size = var.max_size
-  desired_capacity = var.desired_capacity
+  desired_capacity = var.ec2_numInstances
 
   ALB_security_group = [
     aws_security_group.web-dmz.id
@@ -162,4 +163,6 @@ module "ecs-private-cluster"{
   ]
 
   ssl_certificate_arn = var.ssl_certificate_arn
+
+  task_docker_image = var.task_docker_image
 }
