@@ -21,7 +21,7 @@ data "template_file" "container_task_config" {
 
 resource "aws_ecs_task_definition" "marketsvc-http" {
     family = "marketsvc-http"
-    container_definitions = file("task-definitions/marketservice.json")
+    container_definitions = data.template_file.container_task_config.rendered
 
     depends_on = [
     aws_cloudwatch_log_group.applog,
