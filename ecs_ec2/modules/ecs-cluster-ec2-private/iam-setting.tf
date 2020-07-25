@@ -51,6 +51,22 @@ resource "aws_iam_role_policy_attachment" "ecs_terraform_taskexecution_role_poli
     policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+resource "aws_iam_role" "ecs_task_app_execution_role" {
+    name = "ecs_task_app_execution_role"
+    assume_role_policy = file("./modules/policies/ecs-tasks-trustEntity.json")
+}
+
+resource "aws_iam_role_policy_attachment" "ecs_task_app_execution_role_s3_policy" {
+    role = aws_iam_role.ecs_task_app_execution_role.id
+    policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "ecs_task_app_execution_role_dynamodb_policy" {
+    role = aws_iam_role.ecs_task_app_execution_role.id
+    policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}
+
+//Below is the inline policy
 data "template_file" "ecs_role_policy" {
   template = <<EOF
 {

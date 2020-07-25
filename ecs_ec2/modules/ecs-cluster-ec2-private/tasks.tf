@@ -22,7 +22,8 @@ data "template_file" "container_task_config" {
 resource "aws_ecs_task_definition" "marketsvc-http" {
     family = "marketsvc-http-task"
     container_definitions = data.template_file.container_task_config.rendered
-
+    task_role_arn = aws_iam_role.ecs_task_app_execution_role.arn
+    execution_role_arn = aws_iam_role.ecs_terraform_taskexecution_role.arn
     depends_on = [
     aws_cloudwatch_log_group.applog,
     ]
