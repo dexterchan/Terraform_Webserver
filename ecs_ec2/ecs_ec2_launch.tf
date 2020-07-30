@@ -165,4 +165,7 @@ module "ecs-private-cluster"{
   ssl_certificate_arn = var.ssl_certificate_arn
 
   task_docker_image = var.task_docker_image
+
+  route53_zone_id = var.route53_zone_id
+  route53_A_record_hostname = var.route53_A_record_hostname
 }
