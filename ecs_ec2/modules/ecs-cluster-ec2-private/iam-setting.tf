@@ -66,6 +66,12 @@ resource "aws_iam_role_policy_attachment" "ecs_task_app_execution_role_dynamodb_
     policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
 }
 
+resource "aws_iam_role_policy_attachment" "ecs_task_app_execution_role_xraywrite_policy" {
+    role = aws_iam_role.ecs_task_app_execution_role.id
+    policy_arn = "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
+}
+
+
 //Below is the inline policy
 data "template_file" "ecs_role_policy" {
   template = <<EOF
