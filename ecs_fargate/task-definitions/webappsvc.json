@@ -2,8 +2,8 @@
   {
     "name": "marketsvc-http",
     "image": "${task_docker_image}",
-    "cpu": 20,
-    "memory": 200,
+    "cpu": 128,
+    "memory": 512,
     "links": [],
     "portMappings": [
       {

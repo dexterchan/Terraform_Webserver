@@ -78,9 +78,9 @@ resource "aws_security_group" "web-app" {
 
   ingress {
     description     = "all TCP traffic from ALB"
-    from_port       = 30000
-    to_port         = 50000
-    protocol        = "tcp"
+    from_port       = 0
+    to_port         = 0
+    protocol        = "-1"
     security_groups = [aws_security_group.web-dmz.id]
   }
   

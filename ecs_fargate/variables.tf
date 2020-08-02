@@ -66,7 +66,7 @@ variable "min_size"{
 }
 
 variable "max_size"{
-  description = "min size"
+  description = "max size"
   default = 2
 }
 
