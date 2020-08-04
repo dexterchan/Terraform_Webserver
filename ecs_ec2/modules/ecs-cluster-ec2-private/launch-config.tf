@@ -25,10 +25,11 @@ resource "aws_launch_configuration" "as_conf" {
   key_name = var.key_name
 
   associate_public_ip_address = var.associate_public_ip_address
-  user_data = "#!/bin/bash\necho ECS_CLUSTER='${var.ecs_cluster_name}' > /etc/ecs/ecs.config"
+  user_data                   = "#!/bin/bash\necho ECS_CLUSTER='${var.ecs_cluster_name}' > /etc/ecs/ecs.config"
   root_block_device {
     volume_size = "30"
     volume_type = "gp2"
+    encrypted   = "true"
   }
 
   lifecycle {
