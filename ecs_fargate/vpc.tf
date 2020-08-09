@@ -48,7 +48,17 @@ module "vpc" {
       cidr_block  = var.vpc_cidr
     }
   ]
-  private_dedicated_network_acl = false
+  private_dedicated_network_acl = true
+  private_inbound_acl_rules = [
+    {
+      rule_number = 100
+      rule_action = "allow"
+      from_port   = 0
+      to_port     = 0
+      protocol    = "tcp"
+      cidr_block  = var.vpc_cidr
+    }
+  ]
 
 }
 
