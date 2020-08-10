@@ -4,15 +4,10 @@ testPubKey="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDjVLK0R0ckYd4RI8WtXRYGa+uJou8e
 
 #VPC configuration
 vpc_name="uswest2simplewebvpc"
-vpc_azs=["us-west-2a", "us-west-2b", "us-west-2c"]
+vpc_azs=["us-west-2a", "us-west-2b"]
 vpc_cidr="192.168.0.0/16"
-vpc_public_subnets=["192.168.1.0/24","192.168.2.0/24","192.168.3.0/24"]
-vpc_private_subnets_3=["192.168.101.0/24", "192.168.102.0/24","192.168.103.0/24",
-                    "192.168.104.0/24", "192.168.105.0/24","192.168.106.0/24",
-                    "192.168.107.0/24", "192.168.108.0/24","192.168.109.0/24"
-                    ]
-vpc_private_subnets=["192.168.101.0/24", "192.168.102.0/24","192.168.103.0/24"
-                    ]
+vpc_public_subnets=["192.168.1.0/24","192.168.2.0/24"]
+vpc_private_subnets=["192.168.101.0/24", "192.168.201.0/24"]
 vpc_enable_nat_gateway=false
 vpc_tags={
     Terraform   = "true"
@@ -30,11 +25,11 @@ webapp_IAM_ROLE="docker-logs"
 ssl_certificate_arn="arn:aws:acm:us-west-2:192592784707:certificate/ac9455d3-6b02-4455-8bcd-d41566b4972a"
 
 # task docker image
-task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v1.nodejs"
-#task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v1.py"
+#task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v1.nodejs"
+task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v1.py"
 
 route53_zone_id="Z0736580JIAOP64Z32I6"
 route53_A_record_hostname="treequery.org"
 
 min_size=0
-ec2_numInstances = 0
+numOfWebAppInstances = 1

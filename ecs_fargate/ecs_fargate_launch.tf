@@ -24,7 +24,7 @@ module "ecs-private-cluster" {
 
   min_size         = var.min_size
   max_size         = var.max_size
-  desired_capacity = var.ec2_numInstances
+  desired_capacity = var.numOfWebAppInstances
 
   ALB_security_group = [
     aws_security_group.web-dmz.id

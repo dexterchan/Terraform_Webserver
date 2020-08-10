@@ -45,7 +45,7 @@ resource "aws_ecs_service" "marketsvc-http" {
   task_definition = aws_ecs_task_definition.marketsvc-http.arn
   #InvalidParameterException: You cannot specify an IAM role for services that require a service linked role
   #iam_role = aws_iam_role.ecs_terraform_service_role.arn
-  desired_count = 2
+  desired_count = var.desired_capacity
   launch_type   = "FARGATE"
 
   load_balancer {
