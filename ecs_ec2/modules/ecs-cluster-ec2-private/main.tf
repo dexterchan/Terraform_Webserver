@@ -1,8 +1,8 @@
 
 
 resource "aws_ecs_cluster" "main" {
-    name = var.ecs_cluster_name
-    /* add capacity providers if needed
+  name = var.ecs_cluster_name
+  /* add capacity providers if needed
     capacity_providers
     */
 }
@@ -36,11 +36,11 @@ module "ecs-asg" {
   health_check_type         = "EC2"
   min_size                  = var.min_size
   max_size                  = var.max_size
-  desired_capacity          = var.desired_capacity
+  desired_capacity          = var.desired_instances
   wait_for_capacity_timeout = 0
 
   target_group_arns = module.alb.target_group_arns
-  
+
   tags = [
     {
       key                 = "Environment"

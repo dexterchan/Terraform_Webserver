@@ -19,9 +19,6 @@ variable "vpc_cidr" {
 variable "vpc_private_subnets" {
   description = "Private subnets for VPC"
 }
-variable "vpc_private_subnets_3" {
-  description = "Private subnets for VPC 3 subnet per AZ"
-}
 
 variable "vpc_public_subnets" {
   description = "Public subnets for VPC"
@@ -44,7 +41,7 @@ variable "ec2_ami" {
   description = "ec2 ami"
 }
 
-variable "ec2_numInstances" {
+variable "numOfWebAppInstances" {
   description = "number of webapp"
 }
 
@@ -60,24 +57,24 @@ variable "ssl_certificate_arn" {
   description = "arn of SSL certificate"
 }
 
-variable "min_size"{
+variable "min_size" {
   description = "min size"
-  default = 1
+  default     = 1
 }
 
-variable "max_size"{
+variable "max_size" {
   description = "max size"
-  default = 2
+  default     = 2
 }
 
-variable "task_docker_image"{
+variable "task_docker_image" {
   description = "task docker image"
 }
 
-variable "route53_zone_id"{
+variable "route53_zone_id" {
   description = "Route 53 zone id"
 }
 
-variable "route53_A_record_hostname"{
+variable "route53_A_record_hostname" {
   description = "Route 53 A Record hostname"
 }
