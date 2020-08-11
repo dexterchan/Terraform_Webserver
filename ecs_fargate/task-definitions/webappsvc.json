@@ -1,6 +1,6 @@
 [
   {
-    "name": "marketsvc-http",
+    "name": "${app}",
     "image": "${task_docker_image}",
     "cpu": 128,
     "memory": 512,

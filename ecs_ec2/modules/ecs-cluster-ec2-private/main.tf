@@ -47,6 +47,26 @@ module "ecs-asg" {
       value               = "dev"
       propagate_at_launch = true
     }
+    /*
+    ,{
+      key                 = "AmazonECSManaged"
+      propagate_at_launch = true
+    }*/
   ]
-
 }
+/*
+resource "aws_ecs_capacity_provider" "autoscale" {
+  name = "autoscale"
+
+  auto_scaling_group_provider {
+    auto_scaling_group_arn         = module.ecs-asg.this_autoscaling_group_arn
+    managed_termination_protection = "ENABLED"
+
+    managed_scaling {
+      maximum_scaling_step_size = 1000
+      minimum_scaling_step_size = 1
+      status                    = "ENABLED"
+      target_capacity           = 500
+    }
+  }
+}*/
