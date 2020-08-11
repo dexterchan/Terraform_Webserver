@@ -7,7 +7,7 @@ locals {
 }
 
 module "ecs-private-cluster" {
-  source = "./modules/ecs-cluster-ec2-private"
+  source = "./modules/ecs-cluster-fargate-private"
   region = var.region
 
   ecs_cluster_name = local.ecs_resource_name

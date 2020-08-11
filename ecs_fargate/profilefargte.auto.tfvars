@@ -31,5 +31,6 @@ task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v1
 route53_zone_id="Z0736580JIAOP64Z32I6"
 route53_A_record_hostname="treequery.org"
 
-min_size=0
-numOfWebAppInstances = 1
+min_size=1
+max_size=10
+numOfWebAppInstances = 2

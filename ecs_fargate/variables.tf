@@ -64,7 +64,7 @@ variable "min_size" {
 
 variable "max_size" {
   description = "max size"
-  default     = 2
+  default     = 100
 }
 
 variable "task_docker_image" {

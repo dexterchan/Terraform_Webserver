@@ -46,14 +46,15 @@ module "ecs-asg" {
       key                 = "Environment"
       value               = "dev"
       propagate_at_launch = true
-    },
-    {
+    }
+    /*
+    ,{
       key                 = "AmazonECSManaged"
       propagate_at_launch = true
-    }
+    }*/
   ]
 }
-
+/*
 resource "aws_ecs_capacity_provider" "autoscale" {
   name = "autoscale"
 
@@ -68,4 +69,4 @@ resource "aws_ecs_capacity_provider" "autoscale" {
       target_capacity           = 500
     }
   }
-}
+}*/
