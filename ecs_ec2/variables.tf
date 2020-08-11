@@ -67,6 +67,10 @@ variable "max_size" {
   default     = 2
 }
 
+variable "numOfWebAppInstances" {
+  description = "number of webapp"
+}
+
 variable "task_docker_image" {
   description = "task docker image"
 }

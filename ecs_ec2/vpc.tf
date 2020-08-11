@@ -48,6 +48,7 @@ module "vpc" {
       cidr_block  = var.vpc_cidr
     }
   ]
+  /*
   private_dedicated_network_acl = true
   private_inbound_acl_rules = [
     {
@@ -58,7 +59,7 @@ module "vpc" {
       protocol    = "tcp"
       cidr_block  = var.vpc_cidr
     }
-  ]
+  ]*/
 }
 
 resource "aws_security_group" "web-dmz" {

@@ -18,6 +18,7 @@ vpc_tags={
 bastionhost_ami="ami-063fb6d7db5d4692d"
 ec2_ami="ami-01b08717623259f3a"
 ec2_numInstances = 1
+numOfWebAppInstances = 2
 ASG_role_arn="arn:aws:iam::192592784707:role/docker-logs"
 webapp_IAM_ROLE="docker-logs"
 
