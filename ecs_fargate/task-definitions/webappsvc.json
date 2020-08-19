@@ -14,7 +14,7 @@
     "essential": true,
     "entryPoint": [],
     "command": [],
-    "environment": [],
+    "environment": [{ "name": "JWTKEYID", "value": "/mktsvc/dev/JWT_SECRET" }],
     "mountPoints": [],
     "volumesFrom": [],
     "logConfiguration": {
