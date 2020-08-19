@@ -25,8 +25,8 @@ webapp_IAM_ROLE="docker-logs"
 ssl_certificate_arn="arn:aws:acm:us-west-2:192592784707:certificate/ac9455d3-6b02-4455-8bcd-d41566b4972a"
 
 # task docker image
-#task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v1.nodejs"
-task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v1.py"
+task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v2.nodejs"
+#task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v1.py"
 
 route53_zone_id="Z0736580JIAOP64Z32I6"
 route53_A_record_hostname="treequery.org"

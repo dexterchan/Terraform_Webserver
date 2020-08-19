@@ -23,7 +23,7 @@ module "alb" {
       health_check = {
         enabled  = true
         interval = 5
-        path     = "/"
+        path     = "/mgt/health"
         port     = "traffic-port"
         timeout  = 4
         protocol = "HTTP"

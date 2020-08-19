@@ -49,10 +49,6 @@ variable "ASG_role_arn" {
   description = "Auto Scaling Group ARN"
 }
 
-variable "webapp_IAM_ROLE" {
-  description = "web app running with iam role"
-}
-
 variable "ssl_certificate_arn" {
   description = "arn of SSL certificate"
 }

@@ -2,8 +2,8 @@
   {
     "name": "marketsvc-http",
     "image": "${task_docker_image}",
-    "cpu": 20,
-    "memory": 200,
+    "cpu": 256,
+    "memory": 512,
     "links": [],
     "portMappings": [
       {
@@ -14,7 +14,7 @@
     "essential": true,
     "entryPoint": [],
     "command": [],
-    "environment": [],
+    "environment": [{ "name": "JWTKEYID", "value": "/mktsvc/dev/JWT_SECRET" }],
     "mountPoints": [],
     "volumesFrom": [],
     "logConfiguration": {
