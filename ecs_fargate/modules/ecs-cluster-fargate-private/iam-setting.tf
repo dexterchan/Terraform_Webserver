@@ -71,6 +71,33 @@ resource "aws_iam_role_policy_attachment" "ecs_task_app_execution_role_xraywrite
     policy_arn = "arn:aws:iam::aws:policy/AWSXRayDaemonWriteAccess"
 }
 
+resource "aws_iam_role_policy_attachment" "ecs_task_app_execution_role_ssm_policy"{
+    role = aws_iam_role.ecs_task_app_execution_role.id
+    policy_arn = "arn:aws:iam::aws:policy/AmazonSSMReadOnlyAccess"
+}
+
+resource "aws_iam_policy" "ecs_task_app_execution_role_kms_policy" {
+  name        = "kms-decrypt-policy"
+  description = "Enable decryption policy"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "kms:Decrypt",
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "ecs_task_app_execution_role_kms_policy"{
+    role = aws_iam_role.ecs_task_app_execution_role.id
+    policy_arn = aws_iam_policy.ecs_task_app_execution_role_kms_policy.arn
+}
 
 //Below is the inline policy
 data "template_file" "ecs_role_policy" {
