@@ -117,8 +117,10 @@ module "ecs-private-cluster" {
 
   key_name = aws_key_pair.deployer.key_name
 
-  asg_subnets = module.vpc.private_subnets
-  alb_subnets = module.vpc.public_subnets
+  asg_subnets      = [module.vpc.private_subnets[0], module.vpc.private_subnets[1]]
+  alb_subnets      = module.vpc.public_subnets
+  endpoint_subnets = [module.vpc.private_subnets[2]]
+
 
   asg_route_table_ids = module.vpc.private_route_table_ids
 
