@@ -44,6 +44,10 @@ variable "asg_subnets" {
   description = "asg subnets"
 }
 
+variable "endpoint_subnets" {
+  description = "endpoint subnets"
+}
+
 variable "asg_route_table_ids" {
   description = "asg route table ids"
 }

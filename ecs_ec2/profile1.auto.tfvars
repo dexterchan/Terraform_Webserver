@@ -7,7 +7,7 @@ vpc_name="uswest2simplewebvpc"
 vpc_azs=["us-west-2a", "us-west-2b"]
 vpc_cidr="192.168.0.0/16"
 vpc_public_subnets=["192.168.1.0/24","192.168.2.0/24"]
-vpc_private_subnets=["192.168.101.0/24", "192.168.201.0/24"]
+vpc_private_subnets=["192.168.101.0/24", "192.168.102.0/24", "192.168.103.0/24"]
 vpc_enable_nat_gateway=false
 vpc_tags={
     Terraform   = "true"
@@ -25,7 +25,8 @@ ASG_role_arn="arn:aws:iam::192592784707:role/docker-logs"
 ssl_certificate_arn="arn:aws:acm:us-west-2:192592784707:certificate/ac9455d3-6b02-4455-8bcd-d41566b4972a"
 
 # task docker image
-task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v3.java"
+task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:rc.java"
+#task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v3.java"
 #task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v2.nodejs"
 #task_docker_image="192592784707.dkr.ecr.us-west-2.amazonaws.com/marketservice:v1.py"
 

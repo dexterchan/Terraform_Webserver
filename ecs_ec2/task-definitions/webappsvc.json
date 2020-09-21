@@ -14,7 +14,13 @@
     "essential": true,
     "entryPoint": [],
     "command": [],
-    "environment": [{ "name": "JWTKEYID", "value": "/mktsvc/dev/JWT_SECRET" }],
+    "environment": [
+      { "name": "JWTKEYID", "value": "/mktsvc/dev/JWT_SECRET" },
+      {
+        "name": "BBG_CLIENTCERT_KEYID",
+        "value": "/mktsvc/dev/BBG_CLIENTCERT_PWD"
+      }
+    ],
     "mountPoints": [],
     "volumesFrom": [],
     "logConfiguration": {
