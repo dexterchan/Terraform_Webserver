@@ -24,8 +24,8 @@ data "template_file" "container_task_config" {
 resource "aws_ecs_task_definition" "webapp-http" {
   family                   = "webapp-http-staging"
   network_mode             = "awsvpc"
-  task_role_arn            = aws_iam_role.ecs_task_app_execution_role.arn
-  execution_role_arn       = aws_iam_role.ecs_terraform_taskexecution_role.arn
+  task_role_arn            = aws_iam_role.web_ecs_task_app_execution_role.arn
+  execution_role_arn       = aws_iam_role.web_ecs_terraform_taskexecution_role.arn
   cpu                      = 256
   memory                   = 2048
   requires_compatibilities = ["FARGATE"]
