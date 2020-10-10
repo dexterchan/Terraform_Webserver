@@ -19,9 +19,7 @@ variable "launch_config_security_group" {
 variable "ALB_security_group" {
   description = "ALB security group id list"
 }
-variable "vpc-endpoint_security_group" {
-  description = "vpc endpoint security group"
-}
+
 
 variable "vpc_id" {
   description = "vpc_id"
@@ -44,13 +42,6 @@ variable "asg_subnets" {
   description = "asg subnets"
 }
 
-variable "endpoint_subnets" {
-  description = "endpoint subnets"
-}
-
-variable "asg_route_table_ids" {
-  description = "asg route table ids"
-}
 
 variable "min_size" {
   description = "min size"
@@ -78,4 +69,14 @@ variable "route53_zone_id" {
 
 variable "route53_A_record_hostname" {
   description = "Route 53 A Record hostname"
+}
+
+variable "ecs_task_app_execution_role-arn" {
+  description = "ecs_task_app_execution_role arn"
+  type        = string
+}
+
+variable "ecs_terraform_taskexecution_role-arn" {
+  description = "ecs_terraform_taskexecution_role arn"
+  type        = string
 }

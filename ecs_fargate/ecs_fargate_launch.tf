@@ -1,9 +1,9 @@
 locals {
-  name        = "terraform-ecs"
+  name        = "mkt-pub"
   environment = "dev"
 
   # This is the convention we use to know what belongs to each other
-  ecs_resource_name = "${local.name}-fargate-${local.environment}"
+  ecs_resource_name = "${local.name}-1-${local.environment}"
 }
 
 module "ecs-private-cluster" {
@@ -17,11 +17,9 @@ module "ecs-private-cluster" {
 
   key_name = aws_key_pair.deployer.key_name
 
-  asg_subnets      = [module.vpc.private_subnets[0], module.vpc.private_subnets[1]]
-  alb_subnets      = module.vpc.public_subnets
-  endpoint_subnets = [module.vpc.private_subnets[2]]
+  asg_subnets = [module.vpc.private_subnets[0], module.vpc.private_subnets[1]]
+  alb_subnets = module.vpc.public_subnets
 
-  asg_route_table_ids = module.vpc.private_route_table_ids
 
   min_size         = var.min_size
   max_size         = var.max_size
@@ -33,9 +31,6 @@ module "ecs-private-cluster" {
   launch_config_security_group = [
     aws_security_group.web-app.id
   ]
-  vpc-endpoint_security_group = [
-    aws_security_group.vpc-endpoint-sg.id
-  ]
 
   ssl_certificate_arn = var.ssl_certificate_arn
 
@@ -43,4 +38,15 @@ module "ecs-private-cluster" {
 
   route53_zone_id           = var.route53_zone_id
   route53_A_record_hostname = var.route53_A_record_hostname
+
+  ecs_task_app_execution_role-arn      = aws_iam_role.ecs_task_app_execution_role.arn
+  ecs_terraform_taskexecution_role-arn = aws_iam_role.ecs_terraform_taskexecution_role.arn
+  depends_on = [
+    aws_vpc_endpoint.cloudwatch,
+    aws_vpc_endpoint.ecs-agent,
+    aws_vpc_endpoint.ecs-telemetry,
+    aws_vpc_endpoint.ecs,
+    aws_vpc_endpoint.ecr_dkr,
+    aws_vpc_endpoint.ecr_api
+  ]
 }

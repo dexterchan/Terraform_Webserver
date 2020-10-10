@@ -23,6 +23,9 @@ variable "vpc_private_subnets" {
 variable "vpc_public_subnets" {
   description = "Public subnets for VPC"
 }
+variable "vpc_endpoint_subnets" {
+  description = "VPC endpoint deployment subnets"
+}
 
 variable "vpc_enable_nat_gateway" {
   description = "Enable NAT gateway for VPC"
