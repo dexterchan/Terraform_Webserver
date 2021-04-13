@@ -1,9 +1,9 @@
 resource "aws_lb" "fargate" {
-  name               = "alb"
+  name               = "alb-${var.ecs_cluster_name}"
   subnets            = var.alb_subnets
   load_balancer_type = "application"
   security_groups    = var.ALB_security_group
-  enable_http2      = true
+  enable_http2       = true
 
   tags = {
     Environment = "staging"
@@ -25,7 +25,7 @@ resource "aws_lb_listener" "https_forward" {
   load_balancer_arn = aws_lb.fargate.arn
   port              = 443
   protocol          = "HTTPS"
-  certificate_arn    = var.ssl_certificate_arn
+  certificate_arn   = var.ssl_certificate_arn
 
   default_action {
     type             = "forward"
@@ -34,7 +34,7 @@ resource "aws_lb_listener" "https_forward" {
 }
 
 resource "aws_lb_target_group" "fargate" {
-  name        = "webapp-alb-tg"
+  name        = "${var.ecs_cluster_name}-tg"
   port        = 80
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
@@ -50,8 +50,8 @@ resource "aws_lb_target_group" "fargate" {
     unhealthy_threshold = "2"
   }
   stickiness {
-        type            = "lb_cookie"
-        cookie_duration = 120
-        enabled         = true
+    type            = "lb_cookie"
+    cookie_duration = 120
+    enabled         = true
   }
 }

@@ -24,8 +24,8 @@ data "template_file" "container_task_config" {
 resource "aws_ecs_task_definition" "webapp-http" {
   family                   = "webapp-http-staging"
   network_mode             = "awsvpc"
-  task_role_arn            = aws_iam_role.ecs_task_app_execution_role.arn
-  execution_role_arn       = aws_iam_role.ecs_terraform_taskexecution_role.arn
+  task_role_arn            = var.ecs_task_app_execution_role-arn
+  execution_role_arn       = var.ecs_terraform_taskexecution_role-arn
   cpu                      = 256
   memory                   = 2048
   requires_compatibilities = ["FARGATE"]
@@ -61,12 +61,7 @@ resource "aws_ecs_service" "webapp-http" {
     assign_public_ip = false
   }
   depends_on = [
-    aws_vpc_endpoint.cloudwatch,
-    aws_vpc_endpoint.ecs-agent,
-    aws_vpc_endpoint.ecs-telemetry,
-    aws_vpc_endpoint.ecs,
-    aws_vpc_endpoint.ecr_dkr,
-    aws_vpc_endpoint.ecr_api,
-    aws_vpc_endpoint.s3
+    aws_lb.fargate,
+    aws_lb_target_group.fargate
   ]
 }
